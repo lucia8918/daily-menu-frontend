@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Footer from "./components/layout/Footer";
+import Top from "./components/layout/Top";
+import Main from "./components/layout/Main";
+import { GlobalLoadingContextProvider } from "./context/GlobalLoadingContext";
+import GlobalLoading from "./components/common/GlobalLoading";
+import axios from "axios";
+
+// init config
+axios.defaults.baseURL = "http://localhost:8080";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalLoadingContextProvider>
+        <div className="App">
+          {/*TOP 영역*/}
+          <Top />
+
+          {/*메인 영역*/}
+          <Main />
+
+          {/*Footer 영역*/}
+          <Footer />
+
+          <GlobalLoading />
+        </div>
+      </GlobalLoadingContextProvider>
+    </>
   );
 }
 
